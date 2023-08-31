@@ -1,9 +1,10 @@
 import { loginUser } from "./partials/login/index.js";
 import { registerUser } from "./partials/register/index.js";
+import { profileUser } from "./partials/profile/index.js";
 import { error404, error500 } from "./partials/errors/index.js";
 import { routes } from "./routes.tmpl.js";
 import { chat } from "./partials/chat/index.js";
-import "./style.scss";
+import "./styles.scss";
 
 document.addEventListener("DOMContentLoaded", () => {
   const index = document.querySelector("#app");
@@ -17,6 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       case "login":
         return loginUser();
+
+      case "profile":
+        return profileUser();
 
       case "chat":
         return chat();
