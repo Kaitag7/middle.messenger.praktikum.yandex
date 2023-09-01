@@ -10,65 +10,67 @@ export const template = `
             </a>
         </div>
 
-        <div class="profile-form">
-            <div class="profile-form__container">
-                <div class="profile-form-header">
-                    <div>
-                        <img class="profile-form-header__img" src="https://upload.wikimedia.org/wikipedia/en/d/da/Matt_LeBlanc_as_Joey_Tribbiani.jpg" alt="">
-                        <div class="profile-form-header__name">Joey</div>
-                    </div>
-                </div>
-
-                <div class="profile-form__main-info main-info">
-                    <div class="main-info__container">
-                        <div class="main-info__item">
-                            <div class="main-info__item-label">Почта</div>
-                            <input class="main-info__item-value main-info__input" type="text" name="email" value="joeyfriends@gmail.com">
-                        </div>
-
-                        <div class="main-info__item">
-                            <div class="main-info__item-label">Логин</div>
-                            <input class="main-info__item-value main-info__input" type="text" name="login" value="joeytribbiani">
-                        </div>
-
-                        <div class="main-info__item">
-                            <div class="main-info__item-label">Имя</div>
-                            <input class="main-info__item-value main-info__input" type="text" name="first_name" value="Joey">
-                        </div>
-
-                        <div class="main-info__item">
-                            <div class="main-info__item-label">Фамилия</div>
-                            <input class="main-info__item-value main-info__input" type="text" name="second_name" value="Tribbiani">
-                        </div>
-
-                        <div class="main-info__item">
-                            <div class="main-info__item-label">Имя в чате</div>
-                            <input class="main-info__item-value main-info__input" type="text" name="display_name" value="Joey">
-                        </div>
-
-                        <div class="main-info__item">
-                            <div class="main-info__item-label">Телефон</div>
-                            <input class="main-info__item-value main-info__input" type="text" name="phone" value="+7 (999) 000 00 00">
+        <form action="/?page=chat" method="post">
+            <div class="profile-form">
+                <div class="profile-form__container">
+                    <div class="profile-form-header">
+                        <div>
+                            <img class="profile-form-header__img" src="https://upload.wikimedia.org/wikipedia/en/d/da/Matt_LeBlanc_as_Joey_Tribbiani.jpg" alt="">
+                            <div class="profile-form-header__name">Joey</div>
                         </div>
                     </div>
-                </div>
 
-                <div class="profile-form__actions">
-                    <div class="profile-form__actions-container">
-                        <div>
-                            <a href="/?page=login" class="link">Изменить данные</a>
+                    <div class="profile-form__main-info main-info">
+                        <div class="main-info__container">
+                            <div class="main-info__item">
+                                <div class="main-info__item-label">Почта</div>
+                                <input class="main-info__item-value main-info__input" type="text" name="email" value="joeyfriends@gmail.com">
+                            </div>
+
+                            <div class="main-info__item">
+                                <div class="main-info__item-label">Логин</div>
+                                <input class="main-info__item-value main-info__input" type="text" name="login" value="joeytribbiani">
+                            </div>
+
+                            <div class="main-info__item">
+                                <div class="main-info__item-label">Имя</div>
+                                <input class="main-info__item-value main-info__input" type="text" name="first_name" value="Joey">
+                            </div>
+
+                            <div class="main-info__item">
+                                <div class="main-info__item-label">Фамилия</div>
+                                <input class="main-info__item-value main-info__input" type="text" name="second_name" value="Tribbiani">
+                            </div>
+
+                            <div class="main-info__item">
+                                <div class="main-info__item-label">Имя в чате</div>
+                                <input class="main-info__item-value main-info__input" type="text" name="display_name" value="Joey">
+                            </div>
+
+                            <div class="main-info__item">
+                                <div class="main-info__item-label">Телефон</div>
+                                <input class="main-info__item-value main-info__input" type="text" name="phone" value="+7 (999) 000 00 00">
+                            </div>
                         </div>
+                    </div>
 
-                        <div>
-                            <a href="/?page=login" class="link">Изменить пароль</a>
-                        </div>
+                    <div class="profile-form__actions">
+                        <div class="profile-form__actions-container">
+                            <div>
+                                <a href="/?page=login" class="link">Изменить данные</a>
+                            </div>
 
-                        <div>
-                            <a href="/?page=login" class="link link_danger">Выйти</a>
+                            <div>
+                                <a href="/?page=login" class="link">Изменить пароль</a>
+                            </div>
+
+                            <div>
+                                <a href="/?page=login" class="link link_danger">Выйти</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 `;
