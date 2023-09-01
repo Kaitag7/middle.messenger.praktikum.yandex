@@ -83,6 +83,12 @@
       max-width: 510px;
     }
 
+    &__input {
+      border: none;
+      outline: none;
+      text-align: end;
+    }
+
     &__item {
       width: 100%;
       display: flex;

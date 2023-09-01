@@ -23,32 +23,32 @@ export const template = `
                     <div class="main-info__container">
                         <div class="main-info__item">
                             <div class="main-info__item-label">Почта</div>
-                            <div class="main-info__item-value">joeytribbiani@gmail.com</div>
+                            <input class="main-info__item-value main-info__input" type="text" name="email" value="joeyfriends@gmail.com">
                         </div>
 
                         <div class="main-info__item">
                             <div class="main-info__item-label">Логин</div>
-                            <div class="main-info__item-value">joeytribbiani</div>
+                            <input class="main-info__item-value main-info__input" type="text" name="login" value="joeytribbiani">
                         </div>
 
                         <div class="main-info__item">
                             <div class="main-info__item-label">Имя</div>
-                            <div class="main-info__item-value">Joey</div>
+                            <input class="main-info__item-value main-info__input" type="text" name="first_name" value="Joey">
                         </div>
 
                         <div class="main-info__item">
                             <div class="main-info__item-label">Фамилия</div>
-                            <div class="main-info__item-value">Tribbiani</div>
+                            <input class="main-info__item-value main-info__input" type="text" name="second_name" value="Tribbiani">
                         </div>
 
                         <div class="main-info__item">
                             <div class="main-info__item-label">Имя в чате</div>
-                            <div class="main-info__item-value">Joey</div>
+                            <input class="main-info__item-value main-info__input" type="text" name="display_name" value="Joey">
                         </div>
 
                         <div class="main-info__item">
                             <div class="main-info__item-label">Телефон</div>
-                            <div class="main-info__item-value">+7 (999) 000 00 00</div>
+                            <input class="main-info__item-value main-info__input" type="text" name="phone" value="+7 (999) 000 00 00">
                         </div>
                     </div>
                 </div>

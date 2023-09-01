@@ -53,8 +53,8 @@ export const template = `
 
             <div class="input-container">
                 <div class="input-container__input">
-                    <input type="password" id="password_confirm" name="password_confirm">
-                    <label for="password_confirm">Пароль (еще раз)</label>
+                    <input type="password" id="password" name="password">
+                    <label for="password">Пароль (еще раз)</label>
                     <div class="input-container__border"></div>
                 </div>
             </div>
