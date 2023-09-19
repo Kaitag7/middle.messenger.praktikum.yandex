@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return new LoginPage();
 
       case 'profile':
-        return new ProfilePage({ editProfile: (e: Event) => console.log(e) });
+        return new ProfilePage();
 
       case 'chat':
         return new ChatPage();

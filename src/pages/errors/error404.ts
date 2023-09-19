@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 export class Error404 extends Block {
   protected render(): string {

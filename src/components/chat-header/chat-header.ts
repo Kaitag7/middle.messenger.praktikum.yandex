@@ -8,9 +8,10 @@ export class ChatHeader extends Block<IProps> {
   protected render(): string {
     const { classes } = this.props;
     return `
-            <div class="chat-header ${classes || ""}">
+            <div class="chat-header ${classes || ''}">
               <div class="short-info">
-                 <img class="short-info__img" src="https://upload.wikimedia.org/wikipedia/en/d/da/Matt_LeBlanc_as_Joey_Tribbiani.jpg" alt="UserPhoto">
+                 <img class="short-info__img" 
+                 src="https://upload.wikimedia.org/wikipedia/en/d/da/Matt_LeBlanc_as_Joey_Tribbiani.jpg" alt="UserPhoto">
                  <div class="short-info__name">Joey</div>
               </div>
 

@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 interface IProps {
   onBlur: () => void;
@@ -21,13 +21,15 @@ export class Input extends Block<IProps> {
   }
 
   protected render(): string {
-    const { classes, placeholder, type, name } = this.props;
+    const {
+      classes, placeholder, type, name,
+    } = this.props;
     return `
             <input
-                ${type ? `type="${type}"` : ""}
+                ${type ? `type="${type}"` : ''}
                 class="${classes}"
-                ${name ? `name="${name}"` : ""}
-                placeholder="${placeholder || ""}"
+                ${name ? `name="${name}"` : ''}
+                placeholder="${placeholder || ''}"
                 ref="input"
             />
         `;

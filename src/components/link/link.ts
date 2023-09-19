@@ -20,13 +20,15 @@ export class Link extends Block<IProps> {
   }
 
   protected render(): string {
-    const { href, className, target, rel, text } = this.props;
+    const {
+      href, className, target, rel, text,
+    } = this.props;
     return `
             <a
-              ${href ? `href=${href}` : ""}
-              ${target ? `target=${target}` : ""}
-              ${rel ? `rel=${rel}` : ""}
-              class="link ${className || ""}">
+              ${href ? `href=${href}` : ''}
+              ${target ? `target=${target}` : ''}
+              ${rel ? `rel=${rel}` : ''}
+              class="link ${className || ''}">
               ${text}
             </a>
         `;

@@ -23,10 +23,10 @@ export class ProfilePage extends Block<IProps> {
       if (formRefs) {
         const values = Object.entries(formRefs).reduce<Record<string, string>>(
           (acc, [key, ref]) => {
-            acc[key] = ref.value ? ref.value() : "";
+            acc[key] = ref.value ? ref.value() : '';
             return acc;
           },
-          {}
+          {},
         );
 
         console.log(values);
@@ -35,7 +35,7 @@ export class ProfilePage extends Block<IProps> {
 
     this.editMode = !this.editMode;
     this.refs.profileMainInfo.setProps({ editMode: this.editMode });
-    this.refs.editProfile.setProps({ text: this.editMode ? "Сохранить" : "Изменить данные" });
+    this.refs.editProfile.setProps({ text: this.editMode ? 'Сохранить' : 'Изменить данные' });
 
     event.preventDefault();
   }
@@ -49,7 +49,9 @@ export class ProfilePage extends Block<IProps> {
                     <div class="profile-form__container">
                       <div class="profile-form-header">
                           <div>
-                            <img class="profile-form-header__img" src="https://upload.wikimedia.org/wikipedia/en/d/da/Matt_LeBlanc_as_Joey_Tribbiani.jpg" alt="">
+                            <img class="profile-form-header__img" 
+                            src="https://upload.wikimedia.org/wikipedia/en/d/da/Matt_LeBlanc_as_Joey_Tribbiani.jpg" alt="">
+                            
                             <div class="profile-form-header__name">Joey</div>
                           </div>
                       </div>

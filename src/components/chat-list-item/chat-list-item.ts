@@ -10,9 +10,10 @@ export class ChatListItem extends Block<IProps> {
     const { classes, active } = this.props;
 
     return `
-            <div class="chat-list-item  ${active ? "chat-list-item_active" : ""} ${classes}">
+            <div class="chat-list-item  ${active ? 'chat-list-item_active' : ''} ${classes}">
                <div>
-                  <img class="chat-list-item__img" src="https://d2lxnqjjgohlq9.cloudfront.net/S/Assets/Files/Users/134528/ot21cvkg.jpg" alt="image">
+                  <img class="chat-list-item__img" 
+                  src="https://d2lxnqjjgohlq9.cloudfront.net/S/Assets/Files/Users/134528/ot21cvkg.jpg" alt="image">
                </div>
                <div>
                  <div class="chat-list-item__name">
@@ -52,7 +53,8 @@ export class ChatListItem extends Block<IProps> {
                </div>
 
                <div>
-                  <img class="chat-list-item__img" src="https://upload.wikimedia.org/wikipedia/en/6/66/Matthew_Perry_as_Chandler_Bing.png" alt="image">
+                  <img class="chat-list-item__img" 
+                  src="https://upload.wikimedia.org/wikipedia/en/6/66/Matthew_Perry_as_Chandler_Bing.png" alt="image">
                </div>
                <div>
                  <div class="chat-list-item__name">
@@ -72,7 +74,8 @@ export class ChatListItem extends Block<IProps> {
                </div>
 
                <div>
-                  <img class="chat-list-item__img" src="https://upload.wikimedia.org/wikipedia/en/6/6f/David_Schwimmer_as_Ross_Geller.jpg" alt="image">
+                  <img class="chat-list-item__img" 
+                  src="https://upload.wikimedia.org/wikipedia/en/6/6f/David_Schwimmer_as_Ross_Geller.jpg" alt="image">
                </div>
                <div>
                  <div class="chat-list-item__name">

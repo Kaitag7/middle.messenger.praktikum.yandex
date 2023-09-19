@@ -11,9 +11,7 @@ export class ChatMessage extends Block<IProps> {
     const { classes, message, isMessageTo } = this.props;
 
     return `
-            <div class="message-container ${isMessageTo ? "message-container_to" : ""} ${
-      classes || ""
-    }">
+            <div class="message-container ${isMessageTo ? 'message-container_to' : ''} ${classes || ''}">
               <div class="message-container__message">
                 <div class="message__text">
                   ${message}

@@ -21,9 +21,9 @@ export class InputField extends Block<IProps> {
   onInput() {
     const element = this.refs.input.element as HTMLInputElement;
     if (element.value) {
-      element.classList.add("is-value");
+      element.classList.add('is-value');
     } else {
-      element.classList.remove("is-value");
+      element.classList.remove('is-value');
     }
   }
 
@@ -55,7 +55,7 @@ export class InputField extends Block<IProps> {
                         onBlur=onBlur
                         onInput=onInput
                         name=name
-                        type="${this.props.type || "text"}"
+                        type="${this.props.type || 'text'}"
                     }}}
 
                     <label for="first_name">{{ label }}</label>

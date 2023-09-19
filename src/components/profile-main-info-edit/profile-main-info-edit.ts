@@ -1,4 +1,7 @@
 import Block from '../../core/Block';
+import {
+  validateEmail, validateLogin, validateName, validatePhone, validateRequired,
+} from '../../functions/validateData';
 
 interface IProps {
   validate: { [key: string]: () => string | null };
@@ -8,16 +11,12 @@ export class ProfileMainInfoEdit extends Block<IProps> {
   constructor() {
     super({
       validate: {
-        login: (value: string) =>
-          value.length < 3 && value.length !== 0
-            ? "Длина логина должна быть не менее 3 символов"
-            : "",
+        login: validateLogin,
 
-        name: () => "",
-        email: (value: string) => (!value.includes("@") ? "Почта невалидна" : ""),
-        phone: (value: string) =>
-          value.length < 11 && value.length !== 0 ? "Номер должен быть не менее 11 цифр" : "",
-        required: (value: string) => (!value.trim() ? "Обязательное поле" : ""),
+        name: validateName,
+        email: validateEmail,
+        phone: validatePhone,
+        required: validateRequired,
       },
     });
   }

@@ -1,18 +1,17 @@
 import Block from '../../core/Block';
+import {
+  validateEmail, validateLogin, validateName, validatePassword, validatePhone,
+} from '../../functions/validateData';
 
 export class RegisterPage extends Block {
   constructor() {
     super({
       validate: {
-        login: (value: string) => (value.length < 3 && value.length !== 0
-          ? 'Длина логина должна быть не менее 3 символов'
-          : ''),
-        password: (value: string) => (value.length < 8 && value.length !== 0
-          ? 'Длина пароля должна быть не менее 8 символов'
-          : ''),
-        name: () => '',
-        email: (value: string) => (!value.includes('@') ? 'Почта невалидна' : ''),
-        phone: (value: string) => (value.length < 11 && value.length !== 0 ? 'Номер должен быть не менее 11 цифр' : ''),
+        login: validateLogin,
+        password: validatePassword,
+        name: validateName,
+        email: validateEmail,
+        phone: validatePhone,
       },
       onRegister: (event: Event) => {
         event.preventDefault();
