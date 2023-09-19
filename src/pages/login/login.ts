@@ -29,15 +29,19 @@ export class LoginPage extends Block {
   protected render(): string {
     return `
                   <div class="login-container">
-                    <h2 class="login-container__title">Вход</h2>
+                    <h2>Вход</h2>
+
                       {{#> FormAuth}}
                           {{{ InputField name="login" label="Логин" ref="login" validate=validate.login }}}
+                          
                           {{{ InputField name="password" type="password" label="Пароль" ref="password" validate=validate.password }}}
+
                           {{{ Button label="Авторизоваться" type="primary" page="chat" onClick=onLogin }}}
-                          <div class="not-profile-link">
-                            {{{ Link href="/?page=register" text="Нет аккаунта?" }}}
-                          </div>
                       {{/FormAuth}}
+
+                      <div class="register-link">
+                          {{{ Link href="/?page=register" text="Нет аккаунта?" }}}
+                      </div>
                   </div>
             `;
   }

@@ -36,22 +36,29 @@ export class RegisterPage extends Block {
   protected render(): string {
     return `
               <div class="register-container">
-                <h2 class="register-container__title">Регистрация</h2>
+                <h2>Регистрация</h2>
+
                   {{#> FormRegister}}
                       {{{ InputField name="first_name" label="Имя" ref="first_name" validate=validate.name }}}
+
                       {{{ InputField name="second_name" label="Фамилия" ref="second_name" validate=validate.name }}}
-                      {{{ InputField name="login" label="Login" ref="login" validate=validate.login }}}
+
+                      {{{ InputField name="login" label="Логин" ref="login" validate=validate.login }}}
+
                       {{{ InputField name="email" label="Почта" ref="email" validate=validate.email }}}
+
                       {{{ InputField name="phone" label="Телефон" ref="phone" validate=validate.phone }}}
-                      {{{ InputField name="password" type="password" label="Password" ref="password" validate=validate.password }}}
-                      {{{ InputField
-                          name="password_confirm" type="password" label="Пароль (еще раз)" ref="password_confirm" validate=validate.password
-                      }}}
+
+                      {{{ InputField name="password" type="password" label="Пароль" ref="password" validate=validate.password }}}
+
+                      {{{ InputField name="password_confirm" type="password" label="Пароль (еще раз)" ref="password_confirm" validate=validate.password }}}
+
                       {{{ Button label="Зарегистрироваться" type="primary" page="chat" onClick=onRegister }}}
-                      <div class="login-link">
-                        {{{ Link href="/?page=login" text="Войти" }}}
-                      </div>
                   {{/FormRegister}}
+
+                  <div class="login-link">
+                      {{{ Link href="/?page=login" text="Войти" }}}
+                  </div>
               </div>
         `;
   }

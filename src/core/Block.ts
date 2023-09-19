@@ -1,9 +1,9 @@
-import EventBus from "./EventBus";
-import { nanoid } from "nanoid";
+import EventBus from "./EventBus.ts";
 import Handlebars from "handlebars";
+import { nanoid } from "nanoid";
 
 // Нельзя создавать экземпляр данного класса
-class Block {
+class Block<Props extends Record<string, any> = Record<string, any>> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -12,21 +12,29 @@ class Block {
   };
 
   public id = nanoid(6);
-  protected props: any;
-  protected refs: Record<string, Block> = {};
+
+  protected props: Props;
+
+  public refs: {
+    [key: string]: Block & {
+      value?: () => string;
+    };
+  } = {};
+
   public children: Record<string, Block>;
+
   private eventBus: () => EventBus;
+
   private _element: HTMLElement | null = null;
-  private _meta: { props: any };
-  value: any;
+
+  private declare readonly _meta: { props: any };
 
   /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
    *
    * @returns {void}
+   * @param propsWithChildren
    */
-  constructor(propsWithChildren: any = {}) {
+  constructor(propsWithChildren: Record<string, any> = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -60,15 +68,23 @@ class Block {
     return { props, children };
   }
 
-  _addEvents() {
-    const { events = {} } = this.props as { events: Record<string, () => void> };
+  private _addEvents() {
+    const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
     });
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _removeEvents() {
+    const { events = {} } = this.props;
+
+    Object.keys(events).forEach((eventName) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
+    });
+  }
+
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -102,7 +118,7 @@ class Block {
   }
 
   protected componentDidUpdate(oldProps: any, newProps: any) {
-    return true;
+    return JSON.stringify(oldProps) !== JSON.stringify(newProps);
   }
 
   setProps = (nextProps: any) => {
@@ -127,7 +143,7 @@ class Block {
     }
 
     this._element = newElement;
-
+    this._removeEvents();
     this._addEvents();
   }
 
@@ -156,22 +172,18 @@ class Block {
   }
 
   _makePropsProxy(props: any) {
-    // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
-    const self = this;
-
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];
         return typeof value === "function" ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set: (target, prop, value) => {
         const oldTarget = { ...target };
 
         target[prop] = value;
 
         // Запускаем обновление компоненты
-        // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {

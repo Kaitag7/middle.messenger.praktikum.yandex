@@ -1,19 +1,52 @@
 import Handlebars from "handlebars";
 import Block from "./core/Block";
-// import * as Components from "./components/button";
 import LoginPage from "./pages/login";
 import MenuNav from "./pages/menu-nav";
+import RegisterPage from "./pages/register";
+import ProfilePage from "./pages/profile";
+import ChatPage from "./pages/chat";
+import { NotFoundPage, ServerErrorPage } from "./pages/errors";
 import { registerComponent } from "./core/registerComponent";
-import { Button, InputField, Input, FormAuth, Link, FormRegister } from "./components";
+import {
+  Button,
+  InputField,
+  Input,
+  FormAuth,
+  Link,
+  FormRegister,
+  ReturnButton,
+  ProfileMainInfo,
+  ProfileMainInfoStatic,
+  ProfileMainInfoEdit,
+  FormProfile,
+  ProfileButton,
+  ChatHeader,
+  ChatMessage,
+  ChatListItem,
+  SearchChatInputField,
+  AttachInput,
+  SendButton,
+} from "./components";
 import "./styles.scss";
-import { RegisterPage } from "./pages/register";
 
 Handlebars.registerPartial("FormAuth", FormAuth);
 Handlebars.registerPartial("FormRegister", FormRegister);
+Handlebars.registerPartial("FormProfile", FormProfile);
 registerComponent("Button", Button);
 registerComponent("InputField", InputField);
 registerComponent("Input", Input);
 registerComponent("Link", Link);
+registerComponent("ReturnButton", ReturnButton);
+registerComponent("ProfileMainInfo", ProfileMainInfo);
+registerComponent("ProfileMainInfoStatic", ProfileMainInfoStatic);
+registerComponent("ProfileMainInfoEdit", ProfileMainInfoEdit);
+registerComponent("ProfileButton", ProfileButton);
+registerComponent("ChatHeader", ChatHeader);
+registerComponent("ChatMessage", ChatMessage);
+registerComponent("ChatListItem", ChatListItem);
+registerComponent("SearchChatInputField", SearchChatInputField);
+registerComponent("AttachInput", AttachInput);
+registerComponent("SendButton", SendButton);
 
 document.addEventListener("DOMContentLoaded", () => {
   const index = document.querySelector("#app");
@@ -28,17 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
       case "login":
         return new LoginPage();
 
-      // case "profile":
-      //   return profileUser();
+      case "profile":
+        return new ProfilePage({ editProfile: (e: Event) => console.log(e) });
 
-      // case "chat":
-      //   return chat();
+      case "chat":
+        return new ChatPage();
 
-      // case "error404":
-      //   return error404();
+      case "error404":
+        return new NotFoundPage();
 
-      // case "error500":
-      //   return error500();
+      case "error500":
+        return new ServerErrorPage();
 
       default:
         return new MenuNav();
