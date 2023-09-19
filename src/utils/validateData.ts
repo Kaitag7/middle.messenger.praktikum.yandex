@@ -1,4 +1,4 @@
-export function validateLogin(value: string) {
+export const validateLogin = (value: string) => {
   if (value.length < 3 || value.length > 20) {
     return 'Длина логина должна быть от 3 до 20 символов';
   }
@@ -9,9 +9,9 @@ export function validateLogin(value: string) {
   }
 
   return '';
-}
+};
 
-export function validatePassword(value: string) {
+export const validatePassword = (value: string) => {
   if (value.length < 8 || value.length > 40) {
     return 'Длина пароля должна быть от 8 до 40 символов';
   }
@@ -25,35 +25,35 @@ export function validatePassword(value: string) {
   }
 
   return '';
-}
+};
 
-export function validateName(value: string) {
+export const validateName = (value: string) => {
   const regex = /^[A-ZА-Я][a-zа-яA-ZА-Я-]*$/;
   if (!regex.test(value)) {
     return 'Неверный формат имени или фамилии';
   }
   return '';
-}
+};
 
-export function validateEmail(value: string) {
+export const validateEmail = (value: string) => {
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!regex.test(value)) {
     return 'Неверный формат email';
   }
   return '';
-}
+};
 
-export function validatePhone(value: string) {
+export const validatePhone = (value: string) => {
   const regex = /^(\+)?[0-9]{10,15}$/;
   if (!regex.test(value)) {
     return 'Неверный формат номера телефона';
   }
   return '';
-}
+};
 
-export function validateRequired(value: string) {
+export const validateRequired = (value: string) => {
   if (!value.trim()) {
     return 'Обязательное поле';
   }
   return '';
-}
+};

@@ -19,7 +19,7 @@ export class ProfilePage extends Block<IProps> {
   editProfile(event: Event) {
     event.preventDefault();
     if (this.editMode) {
-      const formRefs = this.refs?.profileMainInfo?.refs?.ProfileMainInfoEdit?.refs;
+      const formRefs = this.refs?.ProfileMain?.refs?.ProfileEdit?.refs;
       if (formRefs) {
         const values = Object.entries(formRefs).reduce<Record<string, string>>(
           (acc, [key, ref]) => {
@@ -34,7 +34,7 @@ export class ProfilePage extends Block<IProps> {
     }
 
     this.editMode = !this.editMode;
-    this.refs.profileMainInfo.setProps({ editMode: this.editMode });
+    this.refs.ProfileMain.setProps({ editMode: this.editMode });
     this.refs.editProfile.setProps({ text: this.editMode ? 'Сохранить' : 'Изменить данные' });
 
     event.preventDefault();
@@ -56,7 +56,7 @@ export class ProfilePage extends Block<IProps> {
                           </div>
                       </div>
 
-                      {{{ ProfileMainInfo ref="profileMainInfo" editMode=false }}}
+                      {{{ ProfileMain ref="ProfileMain" editMode=false }}}
 
                       <div class="profile-form__actions">
                           <div class="profile-form__actions-container">

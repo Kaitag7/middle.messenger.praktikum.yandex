@@ -1,5 +1,5 @@
 import Block from '../../core/Block';
-import { validateLogin, validatePassword } from '../../functions/validateData';
+import { validateLogin, validatePassword } from '../../utils/validateData';
 
 export class LoginPage extends Block {
   constructor() {

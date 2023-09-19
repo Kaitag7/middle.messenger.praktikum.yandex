@@ -1,7 +1,11 @@
 import Block from '../../core/Block';
 import {
-  validateEmail, validateLogin, validateName, validatePassword, validatePhone,
-} from '../../functions/validateData';
+  validateEmail,
+  validateLogin,
+  validateName,
+  validatePassword,
+  validatePhone,
+} from '../../utils/validateData';
 
 export class RegisterPage extends Block {
   constructor() {

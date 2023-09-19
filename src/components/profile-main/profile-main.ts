@@ -4,7 +4,7 @@ interface IProps {
   editMode: boolean;
 }
 
-export class ProfileMainInfo extends Block<IProps> {
+export class ProfileMain extends Block<IProps> {
   constructor(props: IProps) {
     super({
       ...props,
@@ -15,7 +15,7 @@ export class ProfileMainInfo extends Block<IProps> {
   protected render(): string {
     const { editMode } = this.props as IProps;
     return editMode
-      ? '{{{ ProfileMainInfoEdit ref="ProfileMainInfoEdit" }}}'
-      : '{{{ ProfileMainInfoStatic }}}';
+      ? '{{{ ProfileEdit ref="ProfileEdit" }}}'
+      : '{{{ ProfileInfo }}}';
   }
 }

@@ -1,18 +1,21 @@
 import Block from '../../core/Block';
 import {
-  validateEmail, validateLogin, validateName, validatePhone, validateRequired,
-} from '../../functions/validateData';
+  validateEmail,
+  validateLogin,
+  validateName,
+  validatePhone,
+  validateRequired,
+} from '../../utils/validateData';
 
 interface IProps {
   validate: { [key: string]: () => string | null };
 }
 
-export class ProfileMainInfoEdit extends Block<IProps> {
+export class ProfileEdit extends Block<IProps> {
   constructor() {
     super({
       validate: {
         login: validateLogin,
-
         name: validateName,
         email: validateEmail,
         phone: validatePhone,

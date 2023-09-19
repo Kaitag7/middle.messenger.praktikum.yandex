@@ -50,12 +50,12 @@ export class InputField extends Block<IProps> {
             <div class="input-container {{#if error}}input__error{{/if}}" >
                 <label class="input-container__input">
                     {{{ Input
+                        type="${this.props.type || 'text'}"
                         classes="input__element"
                         ref="input"
                         onBlur=onBlur
                         onInput=onInput
                         name=name
-                        type="${this.props.type || 'text'}"
                     }}}
 
                     <label for="first_name">{{ label }}</label>

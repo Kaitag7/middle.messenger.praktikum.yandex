@@ -1,6 +1,6 @@
 import Block from '../../core/Block';
 
-export class ProfileMainInfoStatic extends Block {
+export class ProfileInfo extends Block {
   protected render(): string {
     return `
             <div class="profile-form__main-info main-info">

@@ -15,9 +15,9 @@ import {
   Link,
   FormRegister,
   ReturnButton,
-  ProfileMainInfo,
-  ProfileMainInfoStatic,
-  ProfileMainInfoEdit,
+  ProfileMain,
+  ProfileInfo,
+  ProfileEdit,
   FormProfile,
   ProfileButton,
   ChatHeader,
@@ -26,6 +26,7 @@ import {
   SearchChatInputField,
   AttachInput,
   SendButton,
+  ErrorLine,
 } from './components';
 import './styles.scss';
 
@@ -37,9 +38,9 @@ registerComponent('InputField', InputField);
 registerComponent('Input', Input);
 registerComponent('Link', Link);
 registerComponent('ReturnButton', ReturnButton);
-registerComponent('ProfileMainInfo', ProfileMainInfo);
-registerComponent('ProfileMainInfoStatic', ProfileMainInfoStatic);
-registerComponent('ProfileMainInfoEdit', ProfileMainInfoEdit);
+registerComponent('ProfileMain', ProfileMain);
+registerComponent('ProfileInfo', ProfileInfo);
+registerComponent('ProfileEdit', ProfileEdit);
 registerComponent('ProfileButton', ProfileButton);
 registerComponent('ChatHeader', ChatHeader);
 registerComponent('ChatMessage', ChatMessage);
@@ -47,6 +48,7 @@ registerComponent('ChatListItem', ChatListItem);
 registerComponent('SearchChatInputField', SearchChatInputField);
 registerComponent('AttachInput', AttachInput);
 registerComponent('SendButton', SendButton);
+registerComponent('ErrorLine', ErrorLine);
 
 document.addEventListener('DOMContentLoaded', () => {
   const index = document.querySelector('#app');
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return new LoginPage();
 
       case 'profile':
-        return new ProfilePage();
+        return new ProfilePage({ editProfile: (e: Event) => console.log(e) });
 
       case 'chat':
         return new ChatPage();
