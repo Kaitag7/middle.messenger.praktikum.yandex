@@ -14,6 +14,3 @@ export { SearchChatInputField } from './search-chat-input-field';
 export { AttachInput } from './attach-input';
 export { SendButton } from './send-button';
 export { ErrorLine } from './error-line';
-export { FormAuth } from './form-auth';
-export { FormRegister } from './form-register';
-export { FormProfile } from './form-profile';

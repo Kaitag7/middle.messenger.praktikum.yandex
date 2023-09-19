@@ -11,14 +11,11 @@ import {
   Button,
   InputField,
   Input,
-  FormAuth,
   Link,
-  FormRegister,
   ReturnButton,
   ProfileMain,
   ProfileInfo,
   ProfileEdit,
-  FormProfile,
   ProfileButton,
   ChatHeader,
   ChatMessage,
@@ -29,6 +26,7 @@ import {
   ErrorLine,
 } from './components';
 import './styles.scss';
+import { FormAuth, FormProfile, FormRegister } from './partials';
 
 Handlebars.registerPartial('FormAuth', FormAuth);
 Handlebars.registerPartial('FormRegister', FormRegister);
