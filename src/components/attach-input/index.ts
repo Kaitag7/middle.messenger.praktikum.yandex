@@ -1,3 +1,3 @@
-import "./attach-input.scss";
+import './attach-input.scss';
 
-export { AttachInput } from "./attach-input.ts";
+export { AttachInput } from './attach-input.ts';

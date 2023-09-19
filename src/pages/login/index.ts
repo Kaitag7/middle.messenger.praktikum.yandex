@@ -1,3 +1,3 @@
-import "./login.scss";
+import './login.scss';
 
-export { LoginPage as default } from "./login";
+export { LoginPage as default } from './login';

@@ -1,1 +1,1 @@
-export { ProfileMainInfoEdit } from "./profile-main-info-edit.ts";
+export { ProfileMainInfoEdit } from './profile-main-info-edit.ts';

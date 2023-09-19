@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 interface IProps {
   validate: { [key: string]: () => string | null };
@@ -36,7 +36,7 @@ export class ProfileMainInfoEdit extends Block<IProps> {
                   {{{ InputField name="second_name" label="Фамилия" ref="second_name" validate=validate.name }}}
 
                   {{{ InputField name="display_name" label="Имя в чате" ref="display_name" validate=validate.required }}}
-                  
+
                   {{{ InputField name="phone" label="Телефон" ref="phone" validate=validate.phone }}}
               </div>
             </div>

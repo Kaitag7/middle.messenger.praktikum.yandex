@@ -1,4 +1,4 @@
-import "./errors.scss";
+import './errors.scss';
 
-export { NotFoundPage } from "./error404";
-export { ServerErrorPage } from "./error500";
+export { Error404 } from './error404';
+export { Error500 } from './error500';

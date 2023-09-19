@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 interface IProps {
   onBlur: () => boolean;
@@ -62,7 +62,7 @@ export class InputField extends Block<IProps> {
 
                     <div class="input-container__border"></div>
                 </label>
-                
+
                 {{{ ErrorLine error=error ref="errorLine"}}}
             </div>
         `;

@@ -1,3 +1,3 @@
-import "./chat-list-item.scss";
+import './chat-list-item.scss';
 
-export { ChatListItem } from "./chat-list-item.ts";
+export { ChatListItem } from './chat-list-item.ts';

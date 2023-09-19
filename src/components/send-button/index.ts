@@ -1,3 +1,3 @@
-import "./send-button.scss";
+import './send-button.scss';
 
-export { SendButton } from "./send-button.ts";
+export { SendButton } from './send-button.ts';

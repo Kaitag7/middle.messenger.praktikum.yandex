@@ -1,3 +1,3 @@
-import "./profile-button.scss";
+import './profile-button.scss';
 
-export { ProfileButton } from "./profile-button.ts";
+export { ProfileButton } from './profile-button.ts';

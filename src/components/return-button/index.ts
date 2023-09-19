@@ -1,3 +1,3 @@
-import "./return-button.scss";
+import './return-button.scss';
 
-export { ReturnButton } from "./return-button.ts";
+export { ReturnButton } from './return-button.ts';

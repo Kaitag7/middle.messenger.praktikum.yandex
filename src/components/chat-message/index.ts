@@ -1,3 +1,3 @@
-import "./chat-message.scss";
+import './chat-message.scss';
 
-export { ChatMessage } from "./chat-message.ts";
+export { ChatMessage } from './chat-message.ts';

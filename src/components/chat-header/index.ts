@@ -1,3 +1,3 @@
-import "./chat-header.scss";
+import './chat-header.scss';
 
-export { ChatHeader } from "./chat-header.ts";
+export { ChatHeader } from './chat-header.ts';

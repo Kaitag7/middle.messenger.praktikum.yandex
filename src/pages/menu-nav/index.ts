@@ -1,1 +1,1 @@
-export { MenuNav as default } from "./menu-nav";
+export { MenuNav as default } from './menu-nav';

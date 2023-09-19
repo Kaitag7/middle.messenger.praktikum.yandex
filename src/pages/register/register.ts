@@ -1,31 +1,28 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 export class RegisterPage extends Block {
   constructor() {
     super({
       validate: {
-        login: (value: string) =>
-          value.length < 3 && value.length !== 0
-            ? "Длина логина должна быть не менее 3 символов"
-            : "",
-        password: (value: string) =>
-          value.length < 8 && value.length !== 0
-            ? "Длина пароля должна быть не менее 8 символов"
-            : "",
-        name: () => "",
-        email: (value: string) => (!value.includes("@") ? "Почта невалидна" : ""),
-        phone: (value: string) =>
-          value.length < 11 && value.length !== 0 ? "Номер должен быть не менее 11 цифр" : "",
+        login: (value: string) => (value.length < 3 && value.length !== 0
+          ? 'Длина логина должна быть не менее 3 символов'
+          : ''),
+        password: (value: string) => (value.length < 8 && value.length !== 0
+          ? 'Длина пароля должна быть не менее 8 символов'
+          : ''),
+        name: () => '',
+        email: (value: string) => (!value.includes('@') ? 'Почта невалидна' : ''),
+        phone: (value: string) => (value.length < 11 && value.length !== 0 ? 'Номер должен быть не менее 11 цифр' : ''),
       },
       onRegister: (event: Event) => {
         event.preventDefault();
 
         const values = Object.entries(this.refs).reduce<Record<string, string>>(
           (acc, [key, ref]) => {
-            acc[key] = ref.value ? ref.value() : "";
+            acc[key] = ref.value ? ref.value() : '';
             return acc;
           },
-          {}
+          {},
         );
 
         console.log(values);
@@ -51,7 +48,8 @@ export class RegisterPage extends Block {
 
                       {{{ InputField name="password" type="password" label="Пароль" ref="password" validate=validate.password }}}
 
-                      {{{ InputField name="password_confirm" type="password" label="Пароль (еще раз)" ref="password_confirm" validate=validate.password }}}
+                      {{{ InputField name="password_confirm" type="password" label="Пароль (еще раз)" ref="password_confirm" 
+                      validate=validate.password }}}
 
                       {{{ Button label="Зарегистрироваться" type="primary" page="chat" onClick=onRegister }}}
                   {{/FormRegister}}

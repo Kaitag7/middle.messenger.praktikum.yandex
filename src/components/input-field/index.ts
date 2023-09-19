@@ -1,3 +1,3 @@
-import "./input-field.scss";
+import './input-field.scss';
 
-export { InputField } from "./input-field";
+export { InputField } from './input-field';

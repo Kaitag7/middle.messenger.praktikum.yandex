@@ -1,3 +1,3 @@
-import "./button.scss";
+import './button.scss';
 
-export { Button } from "./button.ts";
+export { Button } from './button.ts';

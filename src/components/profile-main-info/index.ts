@@ -1,1 +1,1 @@
-export { ProfileMainInfo } from "./profile-main-info.ts";
+export { ProfileMainInfo } from './profile-main-info.ts';

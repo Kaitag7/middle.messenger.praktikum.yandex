@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 interface IProps {
   editMode: boolean;
@@ -16,6 +16,6 @@ export class ProfileMainInfo extends Block<IProps> {
     const { editMode } = this.props as IProps;
     return editMode
       ? '{{{ ProfileMainInfoEdit ref="ProfileMainInfoEdit" }}}'
-      : "{{{ ProfileMainInfoStatic }}}";
+      : '{{{ ProfileMainInfoStatic }}}';
   }
 }

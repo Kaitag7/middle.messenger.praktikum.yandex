@@ -1,3 +1,3 @@
-import "./link.scss";
+import './link.scss';
 
-export { Link } from "./link.ts";
+export { Link } from './link.ts';
