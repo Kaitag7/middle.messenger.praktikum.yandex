@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "no-invalid-position-at-import-rule": null,
+    "function-url-quotes": null,
+    "import-notation": null,
+    "selector-class-pattern": null,
+    "no-descending-specificity": null,
+    "no-duplicate-selectors": null
+  },
+  "ignoreFiles": ["build/*"]
+}
