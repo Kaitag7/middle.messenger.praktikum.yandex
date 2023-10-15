@@ -1,7 +1,8 @@
 import AuthService from "./authService";
-import { getChats } from "./chat";
+import ChatService from "./chatService";
 
 const authService = new AuthService();
+const chatService = new ChatService();
 
 const initApp = async () => {
   let me = null;
@@ -12,7 +13,7 @@ const initApp = async () => {
     return;
   }
 
-  const chats = await getChats();
+  const chats = await chatService.getChats();
   window.store.set({ user: me, chats });
   const isLoginOrRegister = window.location.pathname === "/sign-up" || window.location.pathname === "/";
   if (isLoginOrRegister) {
@@ -21,7 +22,7 @@ const initApp = async () => {
 };
 
 const initChatPage = async () => {
-  const chats = await getChats();
+  const chats = await chatService.getChats();
   window.store.set({ chats });
 };
 

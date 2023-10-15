@@ -1,0 +1,32 @@
+import Block from "../../core/Block";
+import { validatePassword } from "../../utils/validateData";
+
+interface Props {
+  validate: { [key: string]: () => string | null };
+}
+
+export class ProfilePasswordEdit extends Block<Props> {
+  constructor() {
+    super({
+      validate: {
+        password: validatePassword,
+      },
+    });
+  }
+
+  protected render(): string {
+    return `
+          {{#> FormProfile}}
+            <div class="profile-form__main-info main-info">
+              <div class="main-info__container">
+                {{{ InputField name="oldPassword" type="password" label="Старый пароль" ref="oldPassword" 
+                validate=validate.password }}}
+                
+                {{{ InputField name="newPassword" type="password" label="Новый пароль" ref="newPassword" 
+                validate=validate.password }}}
+              </div>
+            </div>
+          {{/ FormProfile}}
+        `;
+  }
+}
