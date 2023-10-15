@@ -1,34 +1,51 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
+import AuthService from "../../services/authService";
 import {
   validateEmail,
   validateLogin,
   validateName,
   validatePassword,
   validatePhone,
-} from '../../utils/validateData';
+} from "../../utils/validateData";
+
+interface Props {}
 
 export class RegisterPage extends Block {
-  constructor() {
+  authService = new AuthService();
+
+  constructor(props: Props) {
     super({
+      ...props,
       validate: {
         login: validateLogin,
         password: validatePassword,
-        name: validateName,
+        firstName: validateName,
+        secondName: validateName,
         email: validateEmail,
         phone: validatePhone,
       },
-      onRegister: (event: Event) => {
+      onSignup: (event: SubmitEvent) => {
         event.preventDefault();
 
-        const values = Object.entries(this.refs).reduce<Record<string, string>>(
-          (acc, [key, ref]) => {
-            acc[key] = ref.value ? ref.value() : '';
-            return acc;
-          },
-          {},
-        );
+        const login = this.refs.login.value ? this.refs.login.value() : "";
+        const password = this.refs.password.value ? this.refs.password.value() : "";
+        const firstName = this.refs.firstName.value ? this.refs.firstName.value() : "";
+        const secondName = this.refs.secondName.value ? this.refs.secondName.value() : "";
+        const phone = this.refs.phone.value ? this.refs.phone.value() : "";
+        const email = this.refs.email.value ? this.refs.email.value() : "";
 
-        console.log(values);
+        if (login && firstName && secondName && phone && email && password) {
+          this.authService
+            .signup({
+              login,
+              password,
+              first_name: firstName,
+              second_name: secondName,
+              phone,
+              email,
+            })
+            .catch((error) => console.error(error));
+        }
       },
     });
   }
@@ -39,9 +56,9 @@ export class RegisterPage extends Block {
                 <h2>Регистрация</h2>
 
                   {{#> FormRegister}}
-                      {{{ InputField name="first_name" label="Имя" ref="first_name" validate=validate.name }}}
+                      {{{ InputField name="first_name" label="Имя" ref="firstName" validate=validate.name }}}
 
-                      {{{ InputField name="second_name" label="Фамилия" ref="second_name" validate=validate.name }}}
+                      {{{ InputField name="second_name" label="Фамилия" ref="secondName" validate=validate.name }}}
 
                       {{{ InputField name="login" label="Логин" ref="login" validate=validate.login }}}
 
@@ -54,11 +71,11 @@ export class RegisterPage extends Block {
                       {{{ InputField name="password_confirm" type="password" label="Пароль (еще раз)" ref="password_confirm" 
                       validate=validate.password }}}
 
-                      {{{ Button label="Зарегистрироваться" type="primary" page="chat" onClick=onRegister }}}
+                      {{{ Button label="Зарегистрироваться" type="primary" onClick=onSignup }}}
                   {{/FormRegister}}
 
                   <div class="login-link">
-                      {{{ Link href="/?page=login" text="Войти" }}}
+                      {{{ Link href="/" text="Войти" }}}
                   </div>
               </div>
         `;

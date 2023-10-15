@@ -61,15 +61,15 @@ export class ProfilePage extends Block<IProps> {
                       <div class="profile-form__actions">
                           <div class="profile-form__actions-container">
                               <div>
-                                {{{ Link onClick=editProfile href="/?page=login" text="Изменить данные" ref="editProfile" }}}
+                                {{{ Link onClick=editProfile href="/" text="Изменить данные" ref="editProfile" }}}
                               </div>
 
                               <div>
-                                {{{ Link href="/?page=login" text="Изменить пароль" }}}
+                                {{{ Link href="/" text="Изменить пароль" }}}
                               </div>
 
                               <div>
-                                {{{ Link href="/?page=login" text="Выйти" className="link_danger" }}}
+                                {{{ Link href="/" text="Выйти" className="link_danger" }}}
                               </div>
                           </div>
                       </div>

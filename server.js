@@ -7,7 +7,7 @@ const path = resolve('dist');
 
 app.use(express.static(path));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(join(path, 'index.html'));
 });
 

@@ -8,7 +8,7 @@ export class Error500 extends Block {
 
               <p class="error__text">Мы уже фиксим</p>
 
-              {{{ Link href="/?page=chat" text="Назад к чатам" }}}
+              {{{ Link href="/messenger" text="Назад к чатам" }}}
             </div>
         `;
   }

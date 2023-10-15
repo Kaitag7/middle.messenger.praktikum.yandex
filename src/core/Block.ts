@@ -1,14 +1,15 @@
-import Handlebars from 'handlebars';
-import { nanoid } from 'nanoid';
-import EventBus from './EventBus.ts';
+import Handlebars from "handlebars";
+import { nanoid } from "nanoid";
+import EventBus from "./EventBus.ts";
 
 // Нельзя создавать экземпляр данного класса
 class Block<Props extends Record<string, any> = Record<string, any>> {
   static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
+    INIT: "init",
+    FLOW_CDM: "flow:component-did-mount",
+    FLOW_CDU: "flow:component-did-update",
+    FLOW_CWU: "flow:component-will-unmount",
+    FLOW_RENDER: "flow:render",
   };
 
   public id = nanoid(6);
@@ -88,6 +89,7 @@ class Block<Props extends Record<string, any> = Record<string, any>> {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -104,6 +106,12 @@ class Block<Props extends Record<string, any> = Record<string, any>> {
   }
 
   componentDidMount() {}
+
+  _componentWillUnmount() {
+    this.componentWillUnmount();
+  }
+
+  componentWillUnmount() {}
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -152,7 +160,7 @@ class Block<Props extends Record<string, any> = Record<string, any>> {
 
     const html = Handlebars.compile(template)(contextAndStubs);
 
-    const temp = document.createElement('template');
+    const temp = document.createElement("template");
 
     temp.innerHTML = html;
 
@@ -164,7 +172,7 @@ class Block<Props extends Record<string, any> = Record<string, any>> {
   }
 
   protected render(): string {
-    return '';
+    return "";
   }
 
   getContent() {
@@ -175,7 +183,7 @@ class Block<Props extends Record<string, any> = Record<string, any>> {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
+        return typeof value === "function" ? value.bind(target) : value;
       },
       set: (target, prop, value) => {
         const oldTarget = { ...target };
@@ -187,7 +195,7 @@ class Block<Props extends Record<string, any> = Record<string, any>> {
         return true;
       },
       deleteProperty() {
-        throw new Error('Нет доступа');
+        throw new Error("Нет доступа");
       },
     });
   }
@@ -198,11 +206,11 @@ class Block<Props extends Record<string, any> = Record<string, any>> {
   }
 
   show() {
-    this.getContent()!.style.display = 'block';
+    this.getContent()!.style.display = "block";
   }
 
   hide() {
-    this.getContent()!.style.display = 'none';
+    this.getContent()!.style.display = "none";
   }
 }
 

@@ -8,7 +8,7 @@ export class Error404 extends Block {
 
               <p class="error__text">Не туда попали</p>
 
-              {{{ Link href="/?page=chat" text="Назад к чатам" }}}
+              {{{ Link href="/messenger" text="Назад к чатам" }}}
             </div>
         `;
   }

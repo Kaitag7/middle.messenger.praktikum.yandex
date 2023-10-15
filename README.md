@@ -6,11 +6,11 @@
 
 ### Страницы приложения, доступные для просмотра
 
-- [Регистрация](https://top-messenger.netlify.app/?page=register)
-- [Авторизация](https://top-messenger.netlify.app/?page=login)
-- [Чат](https://top-messenger.netlify.app/?page=chat)
-- [Ошибка 404](https://top-messenger.netlify.app/?page=error404)
-- [Ошибка 500](https://top-messenger.netlify.app/?page=error500)
+- [Авторизация](https://top-messenger.netlify.app/)
+- [Регистрация](https://top-messenger.netlify.app/sign-up)
+- [Чат](https://top-messenger.netlify.app/messenger)
+- [Ошибка 404](https://top-messenger.netlify.app/error404)
+- [Ошибка 500](https://top-messenger.netlify.app/error500)
 
 ### Команды для сборки и запуска приложения:
 
