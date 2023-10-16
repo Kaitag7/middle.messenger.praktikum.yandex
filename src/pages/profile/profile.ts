@@ -4,6 +4,7 @@ import AuthService from "../../services/authService";
 import { initProfilePage } from "../../services/initApp";
 import UserService from "../../services/userService";
 import { User } from "../../types.global";
+import { connect } from "../../utils/connect";
 
 interface Props {
   editProfile: (e: Event) => void;
@@ -156,3 +157,5 @@ export class ProfilePage extends Block<Props> {
         `;
   }
 }
+
+export default connect(({ user }) => ({ user }))(ProfilePage);

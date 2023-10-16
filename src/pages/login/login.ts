@@ -1,16 +1,12 @@
 import Block from "../../core/Block";
-// import { Store, StoreEvents } from "../../core/Store";
 import AuthService from "../../services/authService";
 import { validateLogin, validatePassword } from "../../utils/validateData";
-
-interface Props {}
 
 export class LoginPage extends Block {
   authService = new AuthService();
 
-  constructor(props: Props) {
+  constructor() {
     super({
-      ...props,
       validate: {
         login: validateLogin,
         password: validatePassword,
@@ -26,10 +22,6 @@ export class LoginPage extends Block {
         }
       },
     });
-
-    // Store.on(StoreEvents.Updated, () => {
-    //   this.setProps(Store.getState());
-    // });
   }
 
   protected render(): string {

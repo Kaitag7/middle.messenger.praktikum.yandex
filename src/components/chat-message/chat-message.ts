@@ -1,17 +1,21 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
 
-interface IProps {
+interface Props {
   classes: string;
   message: string;
-  isMessageTo?: boolean;
+  currentUserId: number;
+  messageUserId: number;
 }
 
-export class ChatMessage extends Block<IProps> {
+export class ChatMessage extends Block<Props> {
   protected render(): string {
-    const { classes, message, isMessageTo } = this.props;
-
+    const {
+      classes, message, currentUserId, messageUserId,
+    } = this.props;
     return `
-            <div class="message-container ${isMessageTo ? 'message-container_to' : ''} ${classes || ''}">
+            <div class="message-container ${
+  currentUserId === messageUserId ? "message-container_to" : ""
+} ${classes || ""}">
               <div class="message-container__message">
                 <div class="message__text">
                   ${message}

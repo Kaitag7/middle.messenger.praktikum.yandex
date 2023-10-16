@@ -1,16 +1,17 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
 
-interface IProps {
+interface Props {
   onBlur: () => void;
   onInput: () => void;
   classes: string;
   placeholder: string;
   type: string;
   name: string;
+  value: string;
 }
 
-export class Input extends Block<IProps> {
-  constructor(props: IProps) {
+export class Input extends Block<Props> {
+  constructor(props: Props) {
     super({
       ...props,
       events: {
@@ -22,14 +23,15 @@ export class Input extends Block<IProps> {
 
   protected render(): string {
     const {
-      classes, placeholder, type, name,
+      classes, placeholder, type, name, value,
     } = this.props;
     return `
             <input
-                ${type ? `type="${type}"` : ''}
+                ${type ? `type="${type}"` : ""}
                 class="${classes}"
-                ${name ? `name="${name}"` : ''}
-                placeholder="${placeholder || ''}"
+                ${name ? `name="${name}"` : ""}
+                ${value ? `value="${value}"` : ""}
+                placeholder="${placeholder || ""}"
                 ref="input"
             />
         `;

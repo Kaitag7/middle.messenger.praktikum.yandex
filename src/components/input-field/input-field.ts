@@ -5,6 +5,7 @@ interface IProps {
   onInput: () => void;
   name: string;
   type: string;
+  value?: string;
   validate?: (value: string) => string | null;
 }
 
@@ -51,11 +52,12 @@ export class InputField extends Block<IProps> {
                 <label class="input-container__input">
                     {{{ Input
                         type="${this.props.type || 'text'}"
-                        classes="input__element"
+                        classes="input__element {{#if value }}is-value{{/if}}"
                         ref="input"
                         onBlur=onBlur
                         onInput=onInput
                         name=name
+                        value=value
                     }}}
 
                     <label for="first_name">{{ label }}</label>

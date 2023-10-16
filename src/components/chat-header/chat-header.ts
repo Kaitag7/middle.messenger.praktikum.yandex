@@ -1,27 +1,76 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
+import ChatService from "../../services/chatService";
+import { Chat } from "../../types.global";
 
-interface IProps {
+interface Props {
   classes: string;
+  value: Chat;
+  openAddUserDialog: () => void;
+  openDeleteUserDialog: () => void;
+  closeAddUserDialog: () => void;
+  closeDeleteUserDialog: () => void;
+  onAddUser: () => void;
+  onLeave: () => void;
 }
 
-export class ChatHeader extends Block<IProps> {
+export class ChatHeader extends Block<Props> {
+  chatService = new ChatService();
+
+  constructor(props: Props) {
+    super({
+      ...props,
+      openAddUserDialog: () => window.store.set({ isOpenDialogAddUser: true }),
+      closeAddUserDialog: () => window.store.set({ isOpenDialogAddUser: false }),
+      openDeleteUserDialog: () => window.store.set({ isOpenDialogDeleteUser: true }),
+      closeDeleteUserDialog: () => window.store.set({ isOpenDialogDeleteUser: false }),
+      onAddUser: () => {
+        const userId: number = +(this.refs.addUser as any).getChatTitle();
+        if (!userId) {
+          window.store.set({ isOpenDialogAddUser: false });
+          return;
+        }
+
+        this.chatService.addUser(userId).catch((error) => console.error(error));
+
+        window.store.set({ isOpenDialogChat: false });
+      },
+      onDeleteUser: () => {
+        const userId: number = +(this.refs.deleteUser as any).getUserId();
+        if (!userId) {
+          window.store.set({ isOpenDialogDeleteUser: false });
+          return;
+        }
+
+        this.chatService.deleteUser(userId).catch((error) => console.error(error));
+
+        window.store.set({ isOpenDialogDeleteUser: false });
+      },
+      onLeave: () => {
+        const userId = window.store.getState().user?.id;
+        if (userId) {
+          this.chatService.deleteUser(userId).catch((error) => console.error(error));
+        }
+      },
+    });
+  }
+
   protected render(): string {
-    const { classes } = this.props;
+    const { classes, value } = this.props;
     return `
-            <div class="chat-header ${classes || ''}">
+            <div class="chat-header ${classes || ""}">
               <div class="short-info">
-                 <img class="short-info__img" 
-                 src="https://upload.wikimedia.org/wikipedia/en/d/da/Matt_LeBlanc_as_Joey_Tribbiani.jpg" alt="UserPhoto">
-                 <div class="short-info__name">Joey</div>
+                <img class="short-info__img" src="${value.avatar}" alt="UserPhoto">
+                <div class="short-info__name">${value.title}</div>
               </div>
 
               <div class="chat-header__actions">
-                <svg xmlns="http://www.w3.org/2000/svg" width="3" height="16" viewBox="0 0 3 16" fill="none">
-                <circle cx="1.5" cy="2" r="1.5" fill="#1E1E1E"/>
-                <circle cx="1.5" cy="8" r="1.5" fill="#1E1E1E"/>
-                <circle cx="1.5" cy="14" r="1.5" fill="#1E1E1E"/>
-                </svg>
+                {{{ Button type="primary" label="Добавить пользователя" onClick=openAddUserDialog}}}
+                {{{ Button type="primary" label="Убрать пользователя" onClick=openDeleteUserDialog}}}
+                {{{ Button type="primary" label="Выйти из чата" onClick=onLeave}}}
               </div>
+
+              {{{ DialogAddUser onSave=onAddUser onClose=closeAddUserDialog ref="addUser"}}}
+              {{{ DialogDeleteUser onSave=onDeleteUser onClose=closeDeleteUserDialog ref="deleteUser"}}}
              </div>
         `;
   }

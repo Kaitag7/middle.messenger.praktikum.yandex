@@ -1,6 +1,6 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
 
-interface IProps {
+interface Props {
   href: string;
   className: string;
   target: string;
@@ -9,12 +9,17 @@ interface IProps {
   onClick: (e: Event) => void;
 }
 
-export class Link extends Block<IProps> {
-  constructor(props: IProps) {
+export class Link extends Block<Props> {
+  constructor(props: Props) {
     super({
       ...props,
       events: {
-        click: props.onClick || (() => {}),
+        click:
+          props.onClick
+          || ((e: Event) => {
+            e.preventDefault();
+            window.router.go(this.props.href);
+          }),
       },
     });
   }
@@ -25,10 +30,10 @@ export class Link extends Block<IProps> {
     } = this.props;
     return `
             <a
-              ${href ? `href=${href}` : ''}
-              ${target ? `target=${target}` : ''}
-              ${rel ? `rel=${rel}` : ''}
-              class="link ${className || ''}">
+              ${href ? `href=${href}` : ""}
+              ${target ? `target=${target}` : ""}
+              ${rel ? `rel=${rel}` : ""}
+              class="link ${className || ""}">
               ${text}
             </a>
         `;
