@@ -1,1 +1,3 @@
-export { ChatMessages } from "./chat-messages.ts";
+import ChatMessages from "./chat-messages.ts";
+
+export default ChatMessages;

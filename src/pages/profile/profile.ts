@@ -1,12 +1,12 @@
-import { PasswordDTO, ProfileDTO } from "../../api/types.api";
 import Block from "../../core/Block";
-import AuthService from "../../services/authService";
-import { initProfilePage } from "../../services/initApp";
-import UserService from "../../services/userService";
-import { User } from "../../types.global";
-import { connect } from "../../utils/connect";
+import { logout } from "../../services/authService.ts";
+import { connect } from "../../utils/connect.ts";
+import { initProfilePage } from "../../services/initApp.ts";
+import { password, profile, avatar } from "../../services/userService.ts";
+import { PasswordDTO, ProfileDTO } from "../../api/types.api.ts";
+import { User } from "../../types.global.ts";
 
-interface Props {
+interface IProps {
   editProfile: (e: Event) => void;
   editPassword: (e: Event) => void;
   uploadAvatar: (e: Event) => void;
@@ -14,14 +14,10 @@ interface Props {
   editPasswordMode: boolean;
 }
 
-export class ProfilePage extends Block<Props> {
+export class ProfilePage extends Block<IProps> {
   private editMode: boolean;
 
-  userService = new UserService();
-
-  authService = new AuthService();
-
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super({
       ...props,
       editProfile: (e: Event) => this.editProfile(e),
@@ -48,9 +44,7 @@ export class ProfilePage extends Block<Props> {
           {},
         );
 
-        this.userService
-          .changeUserProfile(values as ProfileDTO)
-          .catch((error) => console.error(error.message));
+        profile(values as ProfileDTO).catch((error) => console.error(error.message));
       }
     }
 
@@ -74,9 +68,7 @@ export class ProfilePage extends Block<Props> {
           {},
         );
 
-        this.userService
-          .changeUserPassword(values as PasswordDTO)
-          .catch((error) => console.error(error.message));
+        password(values as PasswordDTO).catch((error) => console.error(error.message));
       }
     }
 
@@ -95,18 +87,18 @@ export class ProfilePage extends Block<Props> {
     if (avatarValue) {
       const formData = new FormData();
       formData.append("avatar", avatarValue);
-      this.userService.changeUserAvatar(formData as any).catch();
+      avatar(formData as any).catch();
     }
   }
 
   async logout(event: Event) {
     event.preventDefault();
-    await this.authService.logout();
+    await logout();
   }
 
+  /* eslint-disable max-len */
   protected render(): string {
     const { login, avatar: userAvatar } = this.props?.user || {};
-
     return `
             <div class="profile">
                 {{{ ReturnButton }}}
@@ -114,8 +106,8 @@ export class ProfilePage extends Block<Props> {
                 <section class="profile-form">
                     <div class="profile-form__container">
                       <div class="profile-form-header">
-                        <div>
-                          ${
+                          <div>
+                              ${
   userAvatar
     ? `<img class="profile-form-header__img" src="${userAvatar}" alt="profile image">`
     : ""

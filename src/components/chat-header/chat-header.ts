@@ -1,8 +1,8 @@
 import Block from "../../core/Block";
-import ChatService from "../../services/chatService";
-import { Chat } from "../../types.global";
+import { addUser, deleteUser } from "../../services/chatService.ts";
+import { Chat } from "../../types.global.ts";
 
-interface Props {
+interface IProps {
   classes: string;
   value: Chat;
   openAddUserDialog: () => void;
@@ -13,10 +13,8 @@ interface Props {
   onLeave: () => void;
 }
 
-export class ChatHeader extends Block<Props> {
-  chatService = new ChatService();
-
-  constructor(props: Props) {
+export class ChatHeader extends Block<IProps> {
+  constructor(props: IProps) {
     super({
       ...props,
       openAddUserDialog: () => window.store.set({ isOpenDialogAddUser: true }),
@@ -30,7 +28,7 @@ export class ChatHeader extends Block<Props> {
           return;
         }
 
-        this.chatService.addUser(userId).catch((error) => console.error(error));
+        addUser(userId).catch((error) => console.error(error));
 
         window.store.set({ isOpenDialogChat: false });
       },
@@ -41,26 +39,27 @@ export class ChatHeader extends Block<Props> {
           return;
         }
 
-        this.chatService.deleteUser(userId).catch((error) => console.error(error));
+        deleteUser(userId).catch((error) => console.error(error));
 
         window.store.set({ isOpenDialogDeleteUser: false });
       },
       onLeave: () => {
         const userId = window.store.getState().user?.id;
         if (userId) {
-          this.chatService.deleteUser(userId).catch((error) => console.error(error));
+          deleteUser(userId).catch((error) => console.error(error));
         }
       },
     });
   }
 
+  /* eslint-disable max-len */
   protected render(): string {
     const { classes, value } = this.props;
     return `
             <div class="chat-header ${classes || ""}">
               <div class="short-info">
-                <img class="short-info__img" src="${value.avatar}" alt="UserPhoto">
-                <div class="short-info__name">${value.title}</div>
+                 <img class="short-info__img" src="${value.avatar}" alt="UserPhoto">
+                 <div class="short-info__name">${value.title}</div>
               </div>
 
               <div class="chat-header__actions">

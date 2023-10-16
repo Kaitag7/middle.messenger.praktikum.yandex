@@ -1,1 +1,4 @@
-export { DialogAddUser, withStoreDialogAddUser } from "./dialog-add-user";
+import { withStoreDialogAddUser, DialogAddUser } from "./dialog-add-user.ts";
+
+export { DialogAddUser };
+export default withStoreDialogAddUser;

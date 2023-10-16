@@ -1,4 +1,4 @@
-import Block from '../../core/Block';
+import Block from "../../core/Block";
 
 interface IProps {
   type: string;
@@ -10,7 +10,7 @@ interface IProps {
   events?: { [eventName: string]: (...args: any[]) => void };
 }
 
-export class Button extends Block {
+export class Button extends Block<IProps> {
   constructor(props: IProps) {
     super(props);
     this.props.events = {
@@ -24,11 +24,11 @@ export class Button extends Block {
     } = this.props;
     return `
             <button
-              ${id ? `page=${id}` : ''}
-              ${name ? `name=${name}` : ''}
-              ${type ? `type=${type}` : 'button'}
+              ${id ? `page=${id}` : ""}
+              ${name ? `name=${name}` : ""}
+              ${type ? `type=${type}` : "button"}
               class="button"
-              ${page ? `page="${page}"` : ''}>
+              ${page ? `page="${page}"` : ""}>
               ${label}
             </button>
     `;

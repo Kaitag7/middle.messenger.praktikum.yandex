@@ -1,3 +1,3 @@
-import './register.scss';
+import "./register.scss";
 
-export { RegisterPage as default } from './register.ts';
+export { RegisterPage } from "./register.ts";

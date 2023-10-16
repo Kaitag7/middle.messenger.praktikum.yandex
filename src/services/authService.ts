@@ -5,42 +5,44 @@ import { transformUser } from "../utils/apiTransformers";
 
 const authApi = new AuthApi();
 
-export default class AuthService {
-  async getUser() {
-    const responseUser = await authApi.getUser();
-    if (apiHasError(responseUser)) {
-      throw Error(responseUser.response.reason);
-    }
-
-    return transformUser(JSON.parse(responseUser.response));
+const getUser = async () => {
+  const responseUser = await authApi.me();
+  if (apiHasError(responseUser)) {
+    throw Error(responseUser.response.reason);
   }
 
-  async signin(data: LoginRequestData) {
-    const response = await authApi.signin(data);
-    if (apiHasError(response)) {
-      throw Error(response.response.reason);
-    }
+  return transformUser(JSON.parse(responseUser.response));
+};
 
-    const me = await this.getUser();
-
-    window.store.set({ user: me });
-    window.router.go("/messenger");
+const signin = async (data: LoginRequestData) => {
+  const response = await authApi.login(data);
+  if (apiHasError(response)) {
+    throw Error(response.response.reason);
   }
 
-  async signup(data: CreateUser) {
-    const response = await authApi.signup(data);
-    if (response.status !== 200) {
-      throw Error(response.response.reason);
-    }
+  const me = await getUser();
 
-    const me = await this.getUser();
-    window.store.set({ user: me });
-    window.router.go("/messenger");
+  window.store.set({ user: me });
+  window.router.go("/messenger");
+};
+
+const signup = async (data: CreateUser) => {
+  const response = await authApi.create(data);
+  if (response.status !== 200) {
+    throw Error(response.response.reason);
   }
 
-  async logout() {
-    await authApi.logout();
-    window.store.set({ user: null, chats: [] });
-    window.router.go("/");
-  }
-}
+  const me = await getUser();
+  window.store.set({ user: me });
+  window.router.go("/messenger");
+};
+
+const logout = async () => {
+  await authApi.logout();
+  window.store.set({ user: null, chats: [] });
+  window.router.go("/");
+};
+
+export {
+  signin, signup, logout, getUser,
+};

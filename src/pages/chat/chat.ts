@@ -1,11 +1,11 @@
 import Block from "../../core/Block";
-import { webSocketService } from "../../core/WebSocket";
-import ChatService from "../../services/chatService";
-import { initChatPage } from "../../services/initApp";
-import { Chat, User } from "../../types.global";
-import { connect } from "../../utils/connect";
+import { connect } from "../../utils/connect.ts";
+import { initChatPage } from "../../services/initApp.ts";
+import { createChat } from "../../services/chatService.ts";
+import { webSocketService } from "../../core/WebSocket.ts";
+import { Chat, User } from "../../types.global.ts";
 
-interface Props {
+interface IProps {
   openDialog: () => void;
   closeDialog: () => void;
   onSave: () => void;
@@ -16,10 +16,8 @@ interface Props {
   sendMessage: () => void;
 }
 
-export class ChatPage extends Block<Props> {
-  chatService = new ChatService();
-
-  constructor(props: Props) {
+export class ChatPage extends Block<IProps> {
+  constructor(props: IProps) {
     super({
       ...props,
       openDialog: () => window.store.set({ isOpenDialogChat: true }),
@@ -29,8 +27,7 @@ export class ChatPage extends Block<Props> {
         if (!chatTitle) {
           return;
         }
-        this.chatService
-          .createChat(chatTitle)
+        createChat(chatTitle)
           .then(() => window.store.set({ isOpenDialogChat: false }))
           .catch((error) => console.error(error));
       },
@@ -50,6 +47,7 @@ export class ChatPage extends Block<Props> {
     }
   }
 
+  /* eslint-disable max-len */
   protected render(): string {
     return `
             <div class="chat">

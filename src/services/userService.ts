@@ -1,39 +1,38 @@
-import { Avatar, PasswordDTO, ProfileDTO } from "../api/types.api";
-import UserAPI from "../api/userApi";
 import { apiHasError } from "../utils/apiHasError";
-import AuthService from "./authService";
+import { getUser } from "./authService.ts";
+import UserAPI from "../api/userApi.ts";
+import { Avatar, PasswordDTO, ProfileDTO } from "../api/types.api.ts";
 
 const userApi = new UserAPI();
-const authService = new AuthService();
 
-export default class UserService {
-  async changeUserProfile(data: ProfileDTO) {
-    const response = await userApi.changeUserProfile(data);
-    if (apiHasError(response)) {
-      throw Error(response.response.reason);
-    }
-
-    const me = await authService.getUser();
-    window.store.set({ user: me });
+const profile = async (data: ProfileDTO) => {
+  const response = await userApi.profile(data);
+  if (apiHasError(response)) {
+    throw Error(response.response.reason);
   }
 
-  async changeUserPassword(data: PasswordDTO) {
-    const response = await userApi.changeUserPassword(data);
-    if (apiHasError(response)) {
-      throw Error(response.response.reason);
-    }
+  const me = await getUser();
+  window.store.set({ user: me });
+};
 
-    const me = await authService.getUser();
-    window.store.set({ user: me });
+const avatar = async (data: Avatar) => {
+  const response = await userApi.avatar(data);
+  if (apiHasError(response)) {
+    throw Error(response.response.reason);
   }
 
-  async changeUserAvatar(data: Avatar) {
-    const response = await userApi.changeUserAvatar(data);
-    if (apiHasError(response)) {
-      throw Error(response.response.reason);
-    }
+  const me = await getUser();
+  window.store.set({ user: me });
+};
 
-    const me = await authService.getUser();
-    window.store.set({ user: me });
+const password = async (data: PasswordDTO) => {
+  const response = await userApi.password(data);
+  if (apiHasError(response)) {
+    throw Error(response.response.reason);
   }
-}
+
+  const me = await getUser();
+  window.store.set({ user: me });
+};
+
+export { profile, avatar, password };

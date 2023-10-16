@@ -1,1 +1,4 @@
-export { DialogCreateChat, withStoreDialogCreateChat } from "./dialog-create-chat";
+import { withStoreDialogCreateChat, DialogCreateChat } from "./dialog-create-chat";
+
+export { DialogCreateChat };
+export default withStoreDialogCreateChat;

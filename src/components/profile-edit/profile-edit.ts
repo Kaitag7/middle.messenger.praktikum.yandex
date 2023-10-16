@@ -1,20 +1,20 @@
-import Block from "../../core/Block";
-import { User } from "../../types.global";
+import Block from "../../core/Block.ts";
+import { User } from "../../types.global.ts";
 import {
   validateEmail,
   validateLogin,
   validateName,
   validatePhone,
   validateRequired,
-} from "../../utils/validateData";
+} from "../../utils/validateData.ts";
 
-interface Props {
+interface IProps {
   validate: { [key: string]: () => string | null };
   user: User;
 }
 
-export class ProfileEdit extends Block<Props> {
-  constructor(props: Props) {
+export class ProfileEdit extends Block<IProps> {
+  constructor(props: IProps) {
     super({
       validate: {
         login: validateLogin,
@@ -27,6 +27,7 @@ export class ProfileEdit extends Block<Props> {
     });
   }
 
+  /* eslint-disable max-len */
   protected render(): string {
     const {
       email, login, firstName, secondName, displayName, phone,

@@ -1,11 +1,11 @@
 import Block from "../../core/Block";
 import { validatePassword } from "../../utils/validateData";
 
-interface Props {
+interface IProps {
   validate: { [key: string]: () => string | null };
 }
 
-export class ProfilePasswordEdit extends Block<Props> {
+export class ProfilePasswordEdit extends Block<IProps> {
   constructor() {
     super({
       validate: {
@@ -14,16 +14,15 @@ export class ProfilePasswordEdit extends Block<Props> {
     });
   }
 
+  /* eslint-disable max-len */
   protected render(): string {
     return `
           {{#> FormProfile}}
             <div class="profile-form__main-info main-info">
               <div class="main-info__container">
-                {{{ InputField name="oldPassword" type="password" label="Старый пароль" ref="oldPassword" 
-                validate=validate.password }}}
+                {{{ InputField name="oldPassword" type="password" label="Старый пароль" ref="oldPassword" validate=validate.password }}}
                 
-                {{{ InputField name="newPassword" type="password" label="Новый пароль" ref="newPassword" 
-                validate=validate.password }}}
+                {{{ InputField name="newPassword" type="password" label="Новый пароль" ref="newPassword" validate=validate.password }}}
               </div>
             </div>
           {{/ FormProfile}}

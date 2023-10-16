@@ -1,1 +1,1 @@
-export { ProfilePasswordEdit } from './profile-password-edit';
+export { ProfilePasswordEdit } from "./profile-password-edit.ts";

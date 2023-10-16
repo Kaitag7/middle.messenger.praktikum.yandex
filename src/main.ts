@@ -1,8 +1,4 @@
 import Handlebars from "handlebars";
-import LoginPage from "./pages/login";
-import RegisterPage from "./pages/register";
-import ProfilePage from "./pages/profile";
-import ChatPage from "./pages/chat";
 import { Error404, Error500 } from "./pages/errors";
 import { registerComponent } from "./core/registerComponent";
 import {
@@ -22,6 +18,12 @@ import {
   AttachInput,
   SendButton,
   ErrorLine,
+  ChatMessages,
+  Dialog,
+  DialogAddUser,
+  DialogCreateChat,
+  DialogDeleteUser,
+  ProfilePasswordEdit,
 } from "./components";
 import "./styles.scss";
 import { FormAuth, FormProfile, FormRegister } from "./partials";
@@ -30,6 +32,10 @@ import Block from "./core/Block";
 import { Store } from "./core/Store";
 import { AppState } from "./types.global";
 import { initApp } from "./services/initApp";
+import LoginPage from "./pages/login";
+import { RegisterPage } from "./pages/register";
+import ChatPage from "./pages/chat";
+import ProfilePage from "./pages/profile";
 
 declare global {
   interface Window {
@@ -79,6 +85,12 @@ const componentsToRegister: registerComponents = {
   AttachInput,
   SendButton,
   ErrorLine,
+  ChatMessages,
+  Dialog,
+  DialogAddUser,
+  DialogCreateChat,
+  DialogDeleteUser,
+  ProfilePasswordEdit,
 };
 
 Object.keys(componentsToRegister).forEach((componentName) => {

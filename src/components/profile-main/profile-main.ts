@@ -1,13 +1,13 @@
-import Block from "../../core/Block";
-import { User } from "../../types.global";
+import Block from "../../core/Block.ts";
+import { User } from "../../types.global.ts";
 
-interface Props {
+interface IProps {
   editMode: boolean;
   user: User;
 }
 
-export class ProfileMain extends Block<Props> {
-  constructor(props: Props) {
+export class ProfileMain extends Block<IProps> {
+  constructor(props: IProps) {
     super({
       ...props,
       editMode: false,
@@ -15,7 +15,7 @@ export class ProfileMain extends Block<Props> {
   }
 
   protected render(): string {
-    const { editMode } = this.props as Props;
+    const { editMode } = this.props as IProps;
 
     return editMode
       ? '{{{ ProfileEdit user=user ref="ProfileEdit" }}}'

@@ -4,65 +4,67 @@ import { transformChats } from "../utils/apiTransformers";
 
 const chatApi = new ChatApi();
 
-export default class ChatService {
-  async getChats() {
-    const responseChat = await chatApi.getChats();
-    if (responseChat.status !== 200) {
-      throw Error(responseChat.response.reason);
-    }
-
-    return transformChats(JSON.parse(responseChat.response));
+const getChats = async () => {
+  const responseChat = await chatApi.getChats();
+  if (responseChat.status !== 200) {
+    throw Error(responseChat.response.reason);
   }
 
-  async createChat(title: string) {
-    const response = await chatApi.create({ title });
-    if (response.status !== 200) {
-      throw Error(response.response.reason);
-    }
+  return transformChats(JSON.parse(responseChat.response));
+};
 
-    const responseChat = await chatApi.getChats();
-    if (responseChat.status !== 200) {
-      throw Error(responseChat.response.reason);
-    }
-
-    const chats = await this.getChats();
-    window.store.set({ chats });
+const createChat = async (title: string) => {
+  const response = await chatApi.create({ title });
+  if (response.status !== 200) {
+    throw Error(response.response.reason);
   }
 
-  async connectToChat(chatId: number) {
-    const token = await chatApi.getToken(chatId);
-    const userId = window.store.getState().user?.id;
-    const wsUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${
-      JSON.parse(token.response).token
-    }`;
-
-    webSocketService.connect(wsUrl);
+  const responseChat = await chatApi.getChats();
+  if (responseChat.status !== 200) {
+    throw Error(responseChat.response.reason);
   }
 
-  async addUser(userId: number) {
-    const chatId = window.store.getState().activeChatId;
-    if (!chatId) {
-      return;
-    }
+  const chats = await getChats();
+  window.store.set({ chats });
+};
 
-    const response = await chatApi.addUser(userId, +chatId);
-    if (response.status !== 200) {
-      throw Error(response.response.reason);
-    }
+const connectToChat = async (chatId: number) => {
+  const token = await chatApi.getToken(chatId);
+  const userId = window.store.getState().user?.id;
+  const wsUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${
+    JSON.parse(token.response).token
+  }`;
+
+  webSocketService.connect(wsUrl);
+};
+
+const addUser = async (userId: number) => {
+  const chatId = window.store.getState().activeChatId;
+  if (!chatId) {
+    return;
   }
 
-  async deleteUser(userId: number) {
-    const chatId = window.store.getState().activeChatId;
-    if (!chatId || !userId) {
-      return;
-    }
-
-    const response = await chatApi.deleteUser(+userId, +chatId);
-    if (response.status !== 200) {
-      throw Error(response.response.reason);
-    }
-
-    const chats = await this.getChats();
-    window.store.set({ chats, activeChatId: null, activeChat: null });
+  const response = await chatApi.addUser(userId, +chatId);
+  if (response.status !== 200) {
+    throw Error(response.response.reason);
   }
-}
+};
+
+const deleteUser = async (userId: number) => {
+  const chatId = window.store.getState().activeChatId;
+  if (!chatId || !userId) {
+    return;
+  }
+
+  const response = await chatApi.deleteUser(+userId, +chatId);
+  if (response.status !== 200) {
+    throw Error(response.response.reason);
+  }
+
+  const chats = await getChats();
+  window.store.set({ chats, activeChatId: null, activeChat: null });
+};
+
+export {
+  createChat, getChats, connectToChat, addUser, deleteUser,
+};

@@ -1,11 +1,11 @@
-import Block from "../../core/Block";
-import { User } from "../../types.global";
+import Block from "../../core/Block.ts";
+import { User } from "../../types.global.ts";
 
-interface Props {
+interface IProps {
   user: User;
 }
 
-export class ProfileInfo extends Block<Props> {
+export class ProfileInfo extends Block<IProps> {
   protected render(): string {
     const {
       email, login, firstName, secondName, displayName, phone,

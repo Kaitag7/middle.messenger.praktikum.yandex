@@ -1,13 +1,14 @@
 import Block from "../../core/Block";
 
-interface Props {
+interface IProps {
   classes: string;
   message: string;
   currentUserId: number;
   messageUserId: number;
 }
 
-export class ChatMessage extends Block<Props> {
+export class ChatMessage extends Block<IProps> {
+  /* eslint-disable max-len */
   protected render(): string {
     const {
       classes, message, currentUserId, messageUserId,

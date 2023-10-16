@@ -1,3 +1,2 @@
 import "./dialog.scss";
-
-export { Dialog } from "./dialog.ts";
+export { Dialog } from "./dialog";

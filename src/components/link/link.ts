@@ -1,6 +1,6 @@
 import Block from "../../core/Block";
 
-interface Props {
+interface IProps {
   href: string;
   className: string;
   target: string;
@@ -9,8 +9,8 @@ interface Props {
   onClick: (e: Event) => void;
 }
 
-export class Link extends Block<Props> {
-  constructor(props: Props) {
+export class Link extends Block<IProps> {
+  constructor(props: IProps) {
     super({
       ...props,
       events: {

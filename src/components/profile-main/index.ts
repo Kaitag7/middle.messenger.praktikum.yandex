@@ -1,1 +1,1 @@
-export { ProfileMain } from './profile-main.ts';
+export { ProfileMain } from "./profile-main.ts";

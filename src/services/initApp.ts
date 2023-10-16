@@ -1,19 +1,16 @@
-import AuthService from "./authService";
-import ChatService from "./chatService";
-
-const authService = new AuthService();
-const chatService = new ChatService();
+import { getUser } from "./authService";
+import { getChats } from "./chatService";
 
 const initApp = async () => {
   let me = null;
   try {
-    me = await authService.getUser();
+    me = await getUser();
   } catch (error) {
     window.router.go(window.location.pathname === "/sign-up" ? "/sign-up" : "/");
     return;
   }
 
-  const chats = await chatService.getChats();
+  const chats = await getChats();
   window.store.set({ user: me, chats });
   const isLoginOrRegister = window.location.pathname === "/sign-up" || window.location.pathname === "/";
   if (isLoginOrRegister) {
@@ -22,12 +19,12 @@ const initApp = async () => {
 };
 
 const initChatPage = async () => {
-  const chats = await chatService.getChats();
+  const chats = await getChats();
   window.store.set({ chats });
 };
 
 const initProfilePage = async () => {
-  const user = await authService.getUser();
+  const user = await getUser();
   window.store.set({ user });
 };
 
